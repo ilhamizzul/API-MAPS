@@ -23,15 +23,22 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             .tilt(45)
             .build();
 
+    static final CameraPosition INDONESIA = CameraPosition.builder()
+            .target(new LatLng(-6.175392, 106.827178))
+            .zoom(17)
+            .bearing(295)
+            .tilt(90)
+            .build();
+    static final CameraPosition AUSTRALIA = CameraPosition.builder()
+            .target(new LatLng(-33.856820, 151.215279))
+            .zoom(16)
+            .bearing(0)
+            .tilt(45)
+            .build();
+
     GoogleMap m_map;
     boolean mapReady = false;
-    MarkerOptions renton;
-    MarkerOptions kirkland;
-    MarkerOptions everett;
-    MarkerOptions lynnwood;
-    MarkerOptions montlake;
-    MarkerOptions kent;
-    MarkerOptions showare;
+    MarkerOptions ina, aust;
 
     @Override
     public Resources getResources() {
@@ -42,38 +49,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        renton = new MarkerOptions()
-                .position(new LatLng(47.489805, -122.120502))
-                .title("Renton")
+        aust = new MarkerOptions()
+                .position(new LatLng(-33.856820, 151.215279))
+                .title("Sydney Opera House")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
 
-        kirkland = new MarkerOptions()
-                .position(new LatLng(47.7301986, -122.1768858))
-                .title("Kirkland")
+        ina = new MarkerOptions()
+                .position(new LatLng(-6.175392, 106.827178))
+                .title("Monumen Nasional")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
 
-        everett = new MarkerOptions()
-                .position(new LatLng(47.978748, -122.202001))
-                .title("Everett")
-                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
-        lynnwood = new MarkerOptions()
-                .position(new LatLng(47.819533, -122.32288))
-                .title("Lynnwood")
-                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
-        montlake = new MarkerOptions()
-                .position(new LatLng(47.7973733, -122.3281771))
-                .title("Montlake Terrace")
-                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
 
-        kent = new MarkerOptions()
-                .position(new LatLng(47.385938, -122.258212))
-                .title("Kent Valley")
-                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
-
-        showare = new MarkerOptions()
-                .position(new LatLng(47.38702, -122.23986))
-                .title("Showare Center")
-                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -83,13 +69,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //MapsInitializer.initialize(getApplicationContext());
         mapReady = true;
         m_map = map;
-        m_map.addMarker(renton);
-        m_map.addMarker(kirkland);
-        m_map.addMarker(everett);
-        m_map.addMarker(lynnwood);
-        m_map.addMarker(montlake);
-        m_map.addMarker(kent);
-        m_map.addMarker(showare);
+        m_map.addMarker(ina);
+        m_map.addMarker(aust);
         flyTo(SEATTLE);
     }
 
